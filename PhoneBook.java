@@ -8,6 +8,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class PhoneBook {
   public static  HashMap <String, ArrayList> contacts = new HashMap(); 
@@ -27,7 +29,7 @@ public class PhoneBook {
 
   public static void showContacts() {
     ArrayList<Map.Entry<String, ArrayList>> list = new ArrayList(contacts.entrySet());
-    Collection.sort(list, new Comparator<Map.Entry<String, ArrayList>>(){
+    Collections.sort(list, new Comparator<Map.Entry<String, ArrayList>>(){
       @Override
       public int compare(Map.Entry<String, ArrayList> o1, Map.Entry<String, ArrayList> o2) {
         return o2.getValue().size() - o1.getValue().size();
@@ -37,5 +39,16 @@ public class PhoneBook {
     for (Map.Entry<String, ArrayList> entry: list) {
       System.out.println(entry.getKey() + ":" + entry.getValue());
     }
+  }
+
+  public static void main (String[] args) {
+    addContacts ("Сидоров", "8-912-567-88-22");
+    addContacts ("Комаров","8-3522-54-44-44");
+    addContacts ("Сидоров","8-800-555-35-35");
+    addContacts ("Киркоров", "8-909-111-22-21");
+    addContacts ("Комаров","8-456-123-76-11");
+    addContacts ("Сачковский","8-678-987-54-33");
+
+    showContacts();
   }
 }
